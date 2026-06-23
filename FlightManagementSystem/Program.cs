@@ -88,6 +88,7 @@ namespace FlightManagementSystem
             Console.WriteLine($"Passenger registered successfully. Assigned ID: {passengerId}");
 
         }
+        //Add an Aircraft function
         public static void AddAircraft()
         {
             Console.WriteLine("\n=== Register New Aircraft ===");
@@ -113,6 +114,37 @@ namespace FlightManagementSystem
 
 
         }
+        //Register a Pilot function
+        public static void RegisterPilot()
+        {
+            Console.WriteLine("\n=== Register New Pilot ===");
+
+            int pilotID = context.Pilots.Count + 1;
+
+            Console.Write("Enter pilot name: ");
+            string pName = Console.ReadLine();
+
+            Console.Write("Enter pilot phone : ");
+            string pPhone = Console.ReadLine();
+
+            Console.Write("Enter pilot license number : ");
+            string licenseNumber = Console.ReadLine();
+
+            Console.Write("Enter flight hours : ");
+            int flightHours = int.Parse(Console.ReadLine());
+
+            context.Pilots.Add(new Pilot
+            {
+                pilotId = pilotID,
+                pilotName = pName,
+                pilotPhone = pPhone,
+                licenseNumber = licenseNumber,
+                flightHours = flightHours,
+                isAvailable = true
+            });
+
+            Console.WriteLine($"Pilot registered successfully. Assigned ID: {pilotID}");
+        }
         static void Main(string[] args)
         {
            
@@ -130,9 +162,10 @@ namespace FlightManagementSystem
                         RegisterPassenger(); //Register a Passenger
                         break;
                     case 2:
-                        AddAircraft();
+                        AddAircraft(); //Add an Aircraft
                         break;
                     case 3:
+                        RegisterPilot(); // Register a Pilot
                         break;
                     case 4:
                         break;
