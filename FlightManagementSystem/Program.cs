@@ -1,8 +1,21 @@
-﻿namespace FlightManagementSystem
+﻿using FlightManagementSystem.Models;
+using System.Numerics;
+
+namespace FlightManagementSystem
 {
-    internal class Program
+    public class Program
     {
-        public static void mainMenu()
+     
+            //system storage ( actual storage in memory for all lists ) 
+            public static FlightContext context = new FlightContext
+            {
+                Passengers = new List<Passenger>(),
+                Pilots = new List<Pilot>(),
+                Bookings = new List<Booking>(),
+                Aircraft = new List<Aircraft>(),
+                Flights = new List<Flight>(),
+            };
+            public static void mainMenu()
         {
             Console.WriteLine("==========================================");
             Console.WriteLine("===  Flight Management System Services ===");
@@ -28,6 +41,7 @@
         static void Main(string[] args)
         {
 
+            mainMenu();
             bool exit = false;
             while (exit == false)
             {
