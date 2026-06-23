@@ -5,13 +5,17 @@ using System.Text;
 
 namespace FlightManagementSystem.Models
 {
-    internal class Passenger
+    public class Passenger
     {
 
-        public List<Passenger> Passengers { get; set; }
-        public List<Pilot> Pilots { get; set; }
-        public List<Booking> Bookings { get; set; }
-        public List<Aircraft> Aircraft { get; set; }
-        public List<Flight> Flights { get; set; }
+        public int passengerId { get; set; } 
+        public string passengerName { get; set; } 
+        public string passengerEmail { get; set; } 
+
+        public string passengerPhone { get; set; }        
+        public string passportNumber { get; set; } 
+        public string nationality { get; set; } 
+
+    
     }
 }
