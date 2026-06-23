@@ -1,6 +1,7 @@
 ﻿using FlightManagementSystem.Models;
 using System.Numerics;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace FlightManagementSystem
 {
@@ -145,6 +146,89 @@ namespace FlightManagementSystem
 
             Console.WriteLine($"Pilot registered successfully. Assigned ID: {pilotID}");
         }
+        //View All Flights function
+        public static void ViewAllFlights()
+        {
+         
+            Console.WriteLine("\n=== All Flights ===");
+
+            foreach (Flight f in context.Flights)
+            {
+                Console.WriteLine($"Code: {f.flightCode}  |  Origin: {f.origin}  |  Destination: {f.destination}" +
+                                  $"  |  Departure Date: {f.departureTime}  |  Ticket Price: {f.ticketPrice} + | Available Seats: { f.availableSeats}"+
+           
+                                  $"  |  Status: {f.status} ");
+            }
+        }
+        //Schedule a Flight
+        public static void ScheduleFlight()
+        {
+
+            Console.WriteLine("\n=== Schedule Flights ===");
+
+            //choose available aircraft 
+            foreach (Aircraft a in context.Aircraft)
+            {
+                Console.WriteLine($"Aircraft ID: {a.aircraftId}  | Is operational  : {a.isOperational} ");
+            }
+
+            Console.WriteLine("Enter aircraft id: ");
+            int aircraftId= int .Parse(Console.ReadLine());
+
+            Aircraft aircraft = context.Aircraft.FirstOrDefault(a => a.aircraftId == aircraftId);
+            if(aircraft == null) 
+            {
+                Console.WriteLine("Aircraft not found ");
+            }
+
+
+            //choose  pilot
+            foreach (Pilot p in context.Pilots)
+            {
+                Console.WriteLine($"Pilot ID: {p.pilotId}  | Pilot Name : {p.pilotName} ");
+            }
+
+            Console.WriteLine("Enter pilot id: ");
+            int pilotId = int.Parse(Console.ReadLine());
+
+            Pilot pilot = context.Pilots.FirstOrDefault(p => p.pilotId == pilotId);
+            if (pilot == null)
+            {
+                Console.WriteLine("Pilot not found ");
+            }
+
+            Console.WriteLine("=== flight record ===");
+            Console.WriteLine(" Departure airport / city : ");
+            string origin= Console.ReadLine();
+            Console.WriteLine(" Arrival airport / city : ");
+            string destination= Console.ReadLine();
+            Console.WriteLine(" Departure Date");
+            string depDate = Console.ReadLine();
+            Console.WriteLine(" Departure Time ");
+            string depTime= Console.ReadLine();
+            Console.WriteLine(" TicketPrice ");
+            decimal price= decimal.Parse(Console.ReadLine());
+
+            int flightID = context.Flights.Count + 1; //flight id is generated automatically by the system.
+            int flightCode= context.Flights.Count + 1; //flight code is generated automatically by the system.
+
+
+            context.Flights.Add(
+               new Flight
+               {
+                   flightId = flightID,
+                   flightCode= "OA-"+ flightCode,
+                   destination = destination,
+                   departureDate = depDate,
+                   departureTime = depTime,
+                   ticketPrice = price,
+                   availableSeats = aircraft.totalSeats,
+                   status = "Scheduled"
+               }
+
+               );
+
+            }
         static void Main(string[] args)
         {
            
@@ -168,8 +252,10 @@ namespace FlightManagementSystem
                         RegisterPilot(); // Register a Pilot
                         break;
                     case 4:
+                        ViewAllFlights(); //View All Flights
                         break;
                     case 5:
+                        ScheduleFlight();
                         break;
                     case 6:
                         break;
