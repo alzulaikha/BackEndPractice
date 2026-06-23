@@ -1,12 +1,13 @@
 ﻿using FlightManagementSystem.Models;
 using System.Numerics;
+using System.Reflection;
 
 namespace FlightManagementSystem
 {
     public class Program
     {
      
-            //system storage ( actual storage in memory for all lists ) 
+        //system storage ( actual storage in memory for all lists ) 
             public static FlightContext context = new FlightContext
             {
                 Passengers = new List<Passenger>(),
@@ -15,7 +16,8 @@ namespace FlightManagementSystem
                 Aircraft = new List<Aircraft>(),
                 Flights = new List<Flight>(),
             };
-            public static void mainMenu()
+        //Main menu function
+         public static void mainMenu()
         {
             Console.WriteLine("==========================================");
             Console.WriteLine("===  Flight Management System Services ===");
@@ -33,15 +35,62 @@ namespace FlightManagementSystem
             Console.WriteLine("11 Flight Revenue & Load Factor Report");
             Console.WriteLine("0 Exit");
             Console.WriteLine("==========================================");
-            Console.WriteLine("Select your choice: ");
+            
    
 
 
         }
+        public static void RegisterPassenger()
+        {
+            Console.WriteLine("\n=== Register New Passenger ===");
+
+            int passengerId = context.Passengers.Count + 1;
+
+            Console.Write("Enter passenger name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter passenger email : ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter passenger phone : ");
+            string phoneNum = Console.ReadLine();
+
+            Console.Write("Enter passport number : ");
+            string passNum = Console.ReadLine();
+
+            bool result = context.Passengers.Any(p => p.passportNumber == passNum);
+
+            if (result)
+            {
+                Console.WriteLine("Passenger passport number already exit, please enter another passport number ");
+                return;
+
+            }
+          
+            Console.Write("Enter passenger nationality : ");
+            string nationality = Console.ReadLine();
+
+            context.Passengers.Add(
+                new Passenger
+                {
+                    passengerId = passengerId,
+                    passengerName = name,
+                    passengerEmail = email,
+                    passengerPhone = phoneNum,
+                    passportNumber = passNum,
+                    nationality = nationality
+
+                }
+
+                );
+
+            Console.WriteLine($"Passenger registered successfully. Assigned ID: {passengerId}");
+
+        }
         static void Main(string[] args)
         {
+           
 
-            mainMenu();
             bool exit = false;
             while (exit == false)
             {
@@ -52,6 +101,7 @@ namespace FlightManagementSystem
                 switch (choice)
                 {
                     case 1:
+                        RegisterPassenger();
                         break;
                     case 2:
                         break;
