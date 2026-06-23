@@ -1,13 +1,12 @@
-﻿using System;
+﻿using FlightManagementSystem.Models;
+using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Text;
 
-namespace FlightManagementSystem.Models
+namespace FlightManagementSystem
 {
-    internal class Passenger
+    internal class FlightContext
     {
-
         public List<Passenger> Passengers { get; set; }
         public List<Pilot> Pilots { get; set; }
         public List<Booking> Bookings { get; set; }
