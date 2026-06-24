@@ -157,7 +157,7 @@ namespace FlightManagementSystem
                 Console.WriteLine($"Code: {f.flightCode}  |  Origin: {f.origin}  |  Destination: {f.destination}" +
                                   $"  |  Departure Date: {f.departureTime}  |  Ticket Price: {f.ticketPrice} + | Available Seats: { f.availableSeats}"+
            
-                                  $"  |  Status: {f.status} ");
+                                  $"  |  Status: {f.status} |Flight Duration: {f.flightDuration} ");
 
             }
         }
@@ -209,6 +209,8 @@ namespace FlightManagementSystem
             string depTime= Console.ReadLine();
             Console.WriteLine(" TicketPrice ");
             decimal price= decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Flight Duration");
+            string flightDuration= Console.ReadLine();
 
             int flightID = context.Flights.Count + 1; //flight id is generated automatically by the system.
             int flightCode= context.Flights.Count + 1; //flight code is generated automatically by the system.
@@ -224,6 +226,7 @@ namespace FlightManagementSystem
                    departureTime = depTime,
                    ticketPrice = price,
                    availableSeats = aircraft.totalSeats,
+                   flightDuration=flightDuration,
                    status = "Scheduled"
                }
 
@@ -233,8 +236,9 @@ namespace FlightManagementSystem
         //Book a Flight function
         public static void BookingFlight()
         {
+     
             Console.WriteLine("=== Booking Flight === ");
-            Console.WriteLine("==================================== ");
+       
             Console.WriteLine("Enter your id: ");
             int passId= int.Parse(Console.ReadLine());
 
@@ -289,6 +293,30 @@ namespace FlightManagementSystem
 
 
         }
+        //Cancel a Booking function
+        public static void CancelBooking() 
+        {
+        Console.WriteLine("Enter booking id:");
+         int bookingid=int.Parse(Console.ReadLine());
+
+
+          Booking selectbooking = context.Bookings.FirstOrDefault(b => b.bookingId == bookingid);
+            if (selectbooking == null)
+            {
+                Console.WriteLine("Booking not found ");
+            }
+            if(selectbooking.status== "Cancelled")
+            {
+                Console.WriteLine("Booking already cancelled");
+            }
+            Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == selectbooking.flightId);
+            selectbooking.status = "Cancelled";
+
+            selectflight.availableSeats++;
+
+            Console.WriteLine("Booking cancelled successfully");
+        }
+
         static void Main(string[] args)
 
         {
@@ -316,12 +344,13 @@ namespace FlightManagementSystem
                         ViewAllFlights(); //View All Flights
                         break;
                     case 5:
-                        ScheduleFlight();
+                        ScheduleFlight(); //Schedule a Flight
                         break;
                     case 6:
-                        BookingFlight();
+                        BookingFlight(); // Book a Flight
                         break;
                     case 7:
+                        CancelBooking(); //Cancel a Booking
                         break;
                     case 8:
                         break;
