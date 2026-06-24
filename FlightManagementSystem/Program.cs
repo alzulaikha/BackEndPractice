@@ -316,11 +316,45 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Booking cancelled successfully");
         }
+        // Depart a Flight
+        public static void DepartFlight()
+        {
+
+            Console.WriteLine("Enter flight id: ");
+           int flightid= int.Parse(Console.ReadLine());
+
+            Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == flightid);
+            if (selectflight== null)
+            {
+                Console.WriteLine("flight not found ");
+                return;
+            }
+            if(selectflight.status== "Cancelled")
+            {
+                Console.WriteLine("flight is cancelled  ");
+                return;
+            }
+
+            selectflight.status = "Departed";
+
+            Pilot pilot = context.Pilots.FirstOrDefault(p => p.pilotId == flightid);
+            if (pilot != null)
+            {
+                Console.WriteLine("Enter flight hours  : ");
+                int hours=int.Parse(Console.ReadLine());
+                pilot.flightHours += hours;
+
+            }
+
+            Console.WriteLine("$Depart Flight successfully");
+
+        }
 
         static void Main(string[] args)
 
         {
            
+
 
             bool exit = false;
             while (exit == false)
