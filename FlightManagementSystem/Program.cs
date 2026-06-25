@@ -353,10 +353,17 @@ namespace FlightManagementSystem
             if (selectbooking == null)
             {
                 Console.WriteLine("Booking not found ");
+                return;
             }
             if(selectbooking.status== "Cancelled")
             {
                 Console.WriteLine("Booking already cancelled");
+                return;
+            }
+            if (selectbooking.status == "Departed")
+            {
+                Console.WriteLine("Booking already departed");
+                return;
             }
             Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == selectbooking.flightId);
             selectbooking.status = "Cancelled";
