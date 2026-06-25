@@ -392,7 +392,7 @@ namespace FlightManagementSystem
             }
             if (selectflight.status == "Departed")
             {
-                Console.WriteLine("Booking already departed");
+                Console.WriteLine("flight already departed");
                 return;
             }
 
@@ -420,10 +420,19 @@ namespace FlightManagementSystem
             Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == flightid);
             if (selectflight == null)
             {
-                Console.WriteLine("flight not found ");
+                Console.WriteLine("flight not found! ");
                 return;
             }
-            
+            if (selectflight.status == "Cancelled")
+            {
+                Console.WriteLine("flight is already cancelled!  ");
+                return;
+            }
+            if (selectflight.status == "Departed")
+            {
+                Console.WriteLine("Can not cancelled flight!");
+                return;
+            }
 
             selectflight.status = "Cancelled";
            var select=context.Bookings.Where(b=>b.flightId == flightid);
