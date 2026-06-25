@@ -109,6 +109,11 @@ namespace FlightManagementSystem
 
             Console.Write("Enter total seats : ");
             int total = int.Parse(Console.ReadLine());
+            if(total<= 0)
+            {
+                Console.WriteLine("Total seats should be greater than zero!");
+                return;
+            }
 
             context.Aircraft.Add(new Aircraft
             {
