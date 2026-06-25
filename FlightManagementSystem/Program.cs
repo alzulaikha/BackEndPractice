@@ -142,6 +142,14 @@ namespace FlightManagementSystem
 
             Console.Write("Enter pilot license number : ");
             string licenseNumber = Console.ReadLine();
+            bool result1 = context.Pilots.Any(p => p.licenseNumber == licenseNumber);
+
+            if (result1)
+            {
+                Console.WriteLine("Pilot licenseNumber already exit, please enter another passport number ");
+                return;
+
+            }
 
             Console.Write("Enter flight hours : ");
             int flightHours = int.Parse(Console.ReadLine());
