@@ -289,7 +289,7 @@ namespace FlightManagementSystem
             string destination= Console.ReadLine();
 
 
-            List<Flight> matched = context.Flights
+            var matched = context.Flights
                                   .Where(f => f.destination.ToLower() == destination &&
                                                f.status == "Scheduled" &&
                                                f.availableSeats > 0).ToList();
@@ -304,12 +304,24 @@ namespace FlightManagementSystem
 
 
             Flight selectflight = context.Flights.FirstOrDefault(f=> f.flightId == flightid);
+
             if (selectflight == null)
             {
-                Console.WriteLine("Flight Id not found ");
+                Console.WriteLine("Flight not found!");
+                return;
+            }
+            if (selectflight.status != "Scheduled")
+            {
+                Console.WriteLine("Flight is not available! ");
+                return;
+            }
+            if (selectflight.availableSeats<=0)
+            {
+                Console.WriteLine("No available seat! ");
+                return;
             }
 
-          
+
 
             context.Bookings.Add(
                 new Booking
