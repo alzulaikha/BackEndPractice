@@ -241,6 +241,7 @@ namespace FlightManagementSystem
             Console.WriteLine("=== Booking Flight === ");
        
             Console.WriteLine("Enter your id: ");
+
             int passId= int.Parse(Console.ReadLine());
 
 
@@ -363,7 +364,11 @@ namespace FlightManagementSystem
                 Console.WriteLine("flight not found ");
                 return;
             }
+            
+
             selectflight.status = "Cancelled";
+           var select=context.Bookings.Where(b=>b.flightId == flightid);
+            int bookingCancel=select.Count();
 
             Pilot pilot=context.Pilots.FirstOrDefault(p=>p.pilotId==flightid);
             if(pilot != null)
@@ -371,7 +376,7 @@ namespace FlightManagementSystem
                 pilot.isAvailable=true;
             }
             
-           Console.WriteLine("flight is canceled");
+           Console.WriteLine("Bookings were affected:"+bookingCancel);
 
 
 
