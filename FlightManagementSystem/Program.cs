@@ -195,7 +195,7 @@ namespace FlightManagementSystem
             //choose available aircraft 
             foreach (Aircraft a in context.Aircraft)
             {
-                Console.WriteLine($"Aircraft ID: {a.aircraftId}  | Is operational  : {a.isOperational} ");
+                Console.WriteLine($"Aircraft ID: {a.aircraftId}  | Model  : {a.model} | TotalSeats : {a.totalSeats} ");
             }
 
             Console.WriteLine("Enter aircraft id: ");
@@ -204,7 +204,13 @@ namespace FlightManagementSystem
             Aircraft aircraft = context.Aircraft.FirstOrDefault(a => a.aircraftId == aircraftId);
             if(aircraft == null) 
             {
-                Console.WriteLine("Aircraft not found ");
+                Console.WriteLine("Aircraft not found! ");
+                return;
+            }
+            if (!aircraft.isOperational)
+            {
+                Console.WriteLine("Aircraft isn't operational!");
+                return;
             }
 
 
@@ -234,6 +240,10 @@ namespace FlightManagementSystem
             string depTime= Console.ReadLine();
             Console.WriteLine(" TicketPrice ");
             decimal price= decimal.Parse(Console.ReadLine());
+            if (price <= 0)
+            { 
+               Console.WriteLine($"Invalid ticket price!");
+            }
             Console.WriteLine("Flight Duration");
             string flightDuration= Console.ReadLine();
 
