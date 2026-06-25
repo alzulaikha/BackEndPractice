@@ -1,6 +1,7 @@
 ﻿using FlightManagementSystem.Models;
 using System.Numerics;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
 namespace FlightManagementSystem
@@ -50,6 +51,12 @@ namespace FlightManagementSystem
 
             Console.Write("Enter passenger name: ");
             string name = Console.ReadLine();
+            if (string.IsNullOrEmpty(name)) 
+            { 
+                Console.WriteLine("Name cannot be empty!");
+                return;
+            }
+
 
             Console.Write("Enter passenger email : ");
             string email = Console.ReadLine();
