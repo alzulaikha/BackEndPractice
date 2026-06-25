@@ -387,7 +387,12 @@ namespace FlightManagementSystem
             }
             if(selectflight.status== "Cancelled")
             {
-                Console.WriteLine("flight is cancelled  ");
+                Console.WriteLine("flight is already cancelled  ");
+                return;
+            }
+            if (selectflight.status == "Departed")
+            {
+                Console.WriteLine("Booking already departed");
                 return;
             }
 
