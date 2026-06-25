@@ -171,7 +171,12 @@ namespace FlightManagementSystem
         {
          
             Console.WriteLine("\n=== All Flights ===");
-
+          
+            if(context.Flights.Count == 0)
+            {
+                Console.WriteLine("No flight available");
+                return;
+            }
             foreach (Flight f in context.Flights)
             {
                 Console.WriteLine($"Code: {f.flightCode}  |  Origin: {f.origin}  |  Destination: {f.destination}" +
@@ -400,10 +405,8 @@ namespace FlightManagementSystem
 
 
 
-
-
         }
-        // Passenger Booking History
+        // Passenger Booking History function
         public static void PassengerBookingHistory()
         {
             Console.WriteLine("\n=== Passenger Booking History ===");
@@ -430,9 +433,7 @@ namespace FlightManagementSystem
 
 
         }
-
-        
-
+       
         static void Main(string[] args)
 
         {
