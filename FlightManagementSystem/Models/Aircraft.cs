@@ -7,7 +7,7 @@ namespace FlightManagementSystem.Models
     public class Aircraft
     {
         public int aircraftId { get; set; }
-        public string model { get; set; }
+        public string model { get; set; }// Aircraft model name (e.g. Boeing 737, Airbus A320)
         public int totalSeats { get; set; }
         public bool isOperational { get; set; }
     }

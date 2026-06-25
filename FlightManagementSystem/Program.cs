@@ -219,7 +219,7 @@ namespace FlightManagementSystem
             context.Flights.Add(
                new Flight
                {
-                   flightId = context.Flights.Count + 1,
+                   flightId = flightID,
                    flightCode= "OA-"+ flightCode,
                    destination = destination,
                    departureDate = depDate,
@@ -227,6 +227,7 @@ namespace FlightManagementSystem
                    ticketPrice = price,
                    availableSeats = aircraft.totalSeats,
                    flightDuration=flightDuration,
+                   origin=origin,
                    status = "Scheduled"
                }
 
@@ -316,7 +317,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Booking cancelled successfully");
         }
-        // Depart a Flight
+        // Depart a Flight function
         public static void DepartFlight()
         {
 
@@ -346,9 +347,66 @@ namespace FlightManagementSystem
 
             }
 
-            Console.WriteLine("$Depart Flight successfully");
+            Console.WriteLine("Depart Flight successfully");
 
         }
+        // Cancel a Flight function
+        public static void CancelFlight()
+        {
+            Console.WriteLine("Enter Flight id to Canceled: ");
+            int flightid=int.Parse(Console.ReadLine());
+
+
+            Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == flightid);
+            if (selectflight == null)
+            {
+                Console.WriteLine("flight not found ");
+                return;
+            }
+            selectflight.status = "Cancelled";
+
+            Pilot pilot=context.Pilots.FirstOrDefault(p=>p.pilotId==flightid);
+            if(pilot != null)
+            {
+                pilot.isAvailable=true;
+            }
+            
+           Console.WriteLine("flight is canceled");
+
+
+
+
+
+        }
+        // Passenger Booking History
+        public static void PassengerBookingHistory()
+        {
+            Console.WriteLine("\n=== Passenger Booking History ===");
+
+            Console.WriteLine("Enter passenger Id: ");
+            int passId = int.Parse(Console.ReadLine());
+
+
+            Passenger selectpassenger = context.Passengers.FirstOrDefault(p => p.passengerId == passId);
+            if (selectpassenger == null)
+            {
+                Console.WriteLine("Passenger not found ");
+                return;
+            }
+
+            foreach (Booking b in context.Bookings.Where(b => b.passengerId == passId)) ;
+
+            foreach (Flight f in context.Flights)
+            {
+                Console.WriteLine($"Flight Code: {f.flightCode}  |   Origin: {f.origin}  |  Destination: {f.destination}" +
+                                  $"  |  departure date: {f.departureDate}  | Seat Number: {f.availableSeats}" +
+                                  $"  |  Price: {f.ticketPrice}  |  Status: {f.status}");
+            }
+
+
+        }
+
+        
 
         static void Main(string[] args)
 
@@ -387,10 +445,15 @@ namespace FlightManagementSystem
                         CancelBooking(); //Cancel a Booking
                         break;
                     case 8:
+                        DepartFlight();
                         break;
                     case 9:
+                        CancelFlight();
                         break;
                     case 10:
+                        PassengerBookingHistory();
+
+
                         break;
                     case 11:
                         break;

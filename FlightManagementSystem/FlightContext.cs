@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FlightManagementSystem
 {
-    internal class FlightContext
+    public class FlightContext
     {
         public List<Passenger> Passengers { get; set; }
         public List<Pilot> Pilots { get; set; }
