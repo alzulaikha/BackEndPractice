@@ -336,9 +336,9 @@ namespace FlightManagementSystem
 
                 });
             selectflight.availableSeats--;
-
-            Console.WriteLine($"Schedule Flights successfully.");
-
+            //////////////////////////////
+            Console.WriteLine($"Schedule Flights successfully."); //display booking info
+            ////////////////////////////////
 
 
         }
@@ -428,11 +428,11 @@ namespace FlightManagementSystem
                 Console.WriteLine("flight is already cancelled!  ");
                 return;
             }
-            if (selectflight.status == "Departed")
-            {
-                Console.WriteLine("Can not cancelled flight!");
-                return;
-            }
+            //if (selectflight.status == "Departed")
+            //{
+            //    Console.WriteLine("Can not cancelled flight!");
+            //    return;
+            //}
 
             selectflight.status = "Cancelled";
            var select=context.Bookings.Where(b=>b.flightId == flightid);
@@ -444,7 +444,7 @@ namespace FlightManagementSystem
                 pilot.isAvailable=true;
             }
             
-           Console.WriteLine("Bookings were affected:"+bookingCancel);
+           Console.WriteLine("Bookings were affected: "+bookingCancel);
 
 
 
@@ -521,8 +521,6 @@ namespace FlightManagementSystem
                         break;
                     case 10:
                         PassengerBookingHistory();
-
-
                         break;
                     case 11:
                         break;
