@@ -6,15 +6,16 @@ namespace FlightManagementSystem.Models
 {
     public class Booking
     {
-        public int bookingId { get; set; }
-        public int passengerId;
+        public int bookingId { get; set; }//System Generated
 
-        public int flightId { get; set; }
-        public int pilotId { get; set; }
-        public string seatNumber { get; set; }
-        public string bookingDate { get; set; }
-        public string departureTime { get; set; }
-        public decimal totalPrice { get; set; }
-        public string status { get; set; } //Confirmed | Cancelled
+        public int passengerId { get; set; } //From List
+
+        public int flightId { get; set; } //From List
+        public int pilotId { get; set; } //From List
+        public string seatNumber { get; set; } //System Generated
+        public string bookingDate { get; set; }// Calculated
+        public string departureTime { get; set; } // Calculated
+        public decimal totalPrice { get; set; } // Calculated
+        public string status { get; set; } // Default Value (Confirmed | Cancelled)
     }
 }
