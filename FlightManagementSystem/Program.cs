@@ -337,8 +337,13 @@ namespace FlightManagementSystem
                 });
             selectflight.availableSeats--;
             //////////////////////////////
-            Console.WriteLine($"Schedule Flights successfully."); //display booking info
-            ////////////////////////////////
+            Console.WriteLine($"Schedule Flights successfully.");
+
+            //display booking information
+            Console.WriteLine("Flight Id:"+flightid);
+            Console.WriteLine("Passenger Id:" + passId);
+            Console.WriteLine("Toatal price: " +selectflight.ticketPrice);
+            Console.WriteLine("Seat number: "+selectflight.availableSeats);
 
 
         }
