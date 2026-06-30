@@ -28,7 +28,7 @@ namespace UniversityManagementSystem.Models
         [Range(2000, 2030)]
         public int enrollmentYear { get; set; } // User Input
         [Range(0.0, 4.0)]
-        public decimal gpa { get; set; } // Calculated
+        public decimal gpa { get; set; } = 0.0m; // Calculated
 
     }
 }
