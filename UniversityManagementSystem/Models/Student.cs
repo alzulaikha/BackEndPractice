@@ -21,7 +21,7 @@ namespace UniversityManagementSystem.Models
         [MaxLength(150)]
         public string email { get; set; } // User Input
         [MaxLength(20)]
-        public string phoneNumber { get; set; } // User Input
+        public string? phoneNumber { get; set; } // User Input
         [Required]
         public DateTime dateOfBirth { get; set; } //Calculated
         [Required]
