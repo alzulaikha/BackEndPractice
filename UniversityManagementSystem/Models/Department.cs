@@ -18,10 +18,11 @@ namespace UniversityManagementSystem.Models
         [MaxLength(100)]
         public string departmentName { get; set; } //User Input
         [MaxLength(50)]
-        public string? building { get; set; } // User Input
+        public string? building { get; set; } // User Input, Optional
         [Required]
+        [Range(0, double.MaxValue)]  //greater than or equal to 0
         public decimal budget { get; set; } //Calculated
-        [ForeignKey("Instructor")]
+        [ForeignKey("Instructor")] //Foreign Key to Instructor
         public int headInstructorId { get; set; } //From list/foreign key
         public Instructor Instructor { get; set; }
 
