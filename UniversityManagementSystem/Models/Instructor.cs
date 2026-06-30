@@ -27,7 +27,7 @@ namespace UniversityManagementSystem.Models
         [Required]
         public DateTime hireDate { get; set; } // User Input
         [Required]
-
+        [Range(1, double.MaxValue)] //must be greater than 0
         public decimal salary { get; set; } // Calculated
         [Required]
         [MaxLength(50)]
