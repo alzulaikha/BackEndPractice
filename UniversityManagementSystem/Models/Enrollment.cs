@@ -23,7 +23,7 @@ namespace UniversityManagementSystem.Models
         public DateTime enrollmentDate { get; set; } //Calculated
 
         [MaxLength(2)]
-        public string finalGrade { get; set; } //Calculated
+        public string? finalGrade { get; set; } //Calculated
         [Required]
 
         [MaxLength(20)]

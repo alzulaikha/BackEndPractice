@@ -23,7 +23,7 @@ namespace UniversityManagementSystem.Models
         [MaxLength(150)]
         public string email { get; set; } // User Input
         [MaxLength(20)]
-        public string officeNumber { get; set; } //System Generated
+        public string? officeNumber { get; set; } //System Generated
         [Required]
         public DateTime hireDate { get; set; } // User Input
         [Required]
