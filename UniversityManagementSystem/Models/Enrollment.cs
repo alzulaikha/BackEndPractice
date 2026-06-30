@@ -6,5 +6,6 @@ namespace UniversityManagementSystem.Models
 {
     internal class Enrollment
     {
+      
     }
 }
