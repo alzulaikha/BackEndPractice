@@ -26,5 +26,7 @@ namespace UniversityManagementSystem.Models
         public int headInstructorId { get; set; } //From list/foreign key
         public Instructor Instructor { get; set; }
 
+        public ICollection<Course> courses { get; set; } // Navigation property
+
     }
 }
