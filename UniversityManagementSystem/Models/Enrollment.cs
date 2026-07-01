@@ -12,12 +12,15 @@ namespace UniversityManagementSystem.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int enrollmentId { get; set; } //System Generated
+
+
         [ForeignKey("Student")]
         public int studentId { get; set; } //From list/foreign key
+        public Student Student { get; set; }
         public Student student { get; set; }
-        [ForeignKey("Course")]
+        [ForeignKey("Course")] 
         public int courseId { get; set; } //From list/foreign key
-        public Course course { get; set; }
+        public Course course { get; set; }  // Navigation property
 
         [Required]
         public DateTime enrollmentDate { get; set; } //Calculated
