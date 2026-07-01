@@ -292,6 +292,7 @@ namespace FlightManagementSystem
             if (selectpassenger == null)
             {
                 Console.WriteLine("Passenger Id not found ");
+                return;
             }
             Console.WriteLine("Enter your destination: ");
             string destination= Console.ReadLine();
