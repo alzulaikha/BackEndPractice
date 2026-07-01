@@ -346,7 +346,7 @@ namespace FlightManagementSystem
                 });
             selectflight.availableSeats--;
             //////////////////////////////
-            Console.WriteLine($"Schedule Flights successfully.");
+            Console.WriteLine($"Booking Flights successfully.");
 
             //display booking information
             Console.WriteLine("Flight Id:"+flightid);
