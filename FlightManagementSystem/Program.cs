@@ -219,6 +219,7 @@ namespace FlightManagementSystem
             {
                 Console.WriteLine($"Pilot ID: {p.pilotId}  | Pilot Name : {p.pilotName} ");
             }
+            
 
             Console.WriteLine("Enter pilot id: ");
             int pilotId = int.Parse(Console.ReadLine());
@@ -244,6 +245,7 @@ namespace FlightManagementSystem
             if (price <= 0)
             { 
                Console.WriteLine($"Invalid ticket price!");
+                return;
             }
             Console.WriteLine("Flight Duration");
             string flightDuration= Console.ReadLine();
