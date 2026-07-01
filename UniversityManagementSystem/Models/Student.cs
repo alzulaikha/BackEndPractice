@@ -31,6 +31,8 @@ namespace UniversityManagementSystem.Models
         public decimal gpa { get; set; } = 0.0m; // Calculated
         public ICollection<Enrollment> Enrollment { get; set; } // Navigation property 
 
+        public ICollection<Course> Courses { get; set; } // Navigation property
+
 
     }
 }
