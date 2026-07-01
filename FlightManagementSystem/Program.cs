@@ -375,7 +375,7 @@ namespace FlightManagementSystem
             }
             if (selectbooking.status == "Departed")
             {
-                Console.WriteLine("Booking already departed");
+                Console.WriteLine("Booking already Confirmed");
                 return;
             }
             Flight selectflight = context.Flights.FirstOrDefault(f => f.flightId == selectbooking.flightId);
