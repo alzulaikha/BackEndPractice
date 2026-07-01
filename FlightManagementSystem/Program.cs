@@ -257,6 +257,7 @@ namespace FlightManagementSystem
             context.Flights.Add(
                new Flight
                {
+
                    flightId = flightID,
                    flightCode= "OA-"+ flightCode,
                    destination = destination,
@@ -267,6 +268,10 @@ namespace FlightManagementSystem
                    flightDuration=flightDuration,
                    origin=origin,
                    status = "Scheduled"
+                   pilotId = pilotId,
+                   aircraftId = aircraftId
+
+
                }
 
                );
