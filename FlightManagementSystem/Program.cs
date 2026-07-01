@@ -219,8 +219,8 @@ namespace FlightManagementSystem
             {
                 Console.WriteLine($"Pilot ID: {p.pilotId}  | Pilot Name : {p.pilotName} ");
             }
-            
 
+            var pilot1 = context.Pilots.Where(p = p => p.isAvailable);
             Console.WriteLine("Enter pilot id: ");
             int pilotId = int.Parse(Console.ReadLine());
 
