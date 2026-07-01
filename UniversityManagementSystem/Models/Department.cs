@@ -23,10 +23,10 @@ namespace UniversityManagementSystem.Models
         [Range(0, double.MaxValue)]  //greater than or equal to 0
         public decimal budget { get; set; } //Calculated
         [ForeignKey("Instructor")] //Foreign Key to Instructor
-        public int headInstructorId { get; set; } //From list/foreign key
+        public int? headInstructorId { get; set; } //From list/foreign key/ ? Nullable to allow departments without a headInstructor
         public Instructor Instructor { get; set; }
 
-        public ICollection<Course> courses { get; set; } // Navigation property
+        public ICollection<Course> courses { get; set; } // Navigation property 
 
     }
 }
