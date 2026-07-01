@@ -35,6 +35,7 @@ namespace UniversityManagementSystem.Models
 
 
         public ICollection<Course> courses { get; set; } // Navigation property 
+        public Department Department { get; set; }  // Navigation property
 
 
 
