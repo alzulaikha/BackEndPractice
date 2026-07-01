@@ -35,6 +35,7 @@ namespace UniversityManagementSystem.Models
         [MaxLength(20)]
         public string semesterOffered { get; set; } // User Input
 
-        
+        public ICollection<Enrollment> Enrollment { get; set; } // Navigation property 
+
     }
 }

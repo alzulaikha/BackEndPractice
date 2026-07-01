@@ -18,6 +18,7 @@ namespace UniversityManagementSystem.Models
         public int studentId { get; set; } //From list/foreign key
         public Student Student { get; set; }
         public Student student { get; set; }
+
         [ForeignKey("Course")] 
         public int courseId { get; set; } //From list/foreign key
         public Course course { get; set; }  // Navigation property
