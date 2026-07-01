@@ -34,5 +34,7 @@ namespace UniversityManagementSystem.Models
         [Required]
         [MaxLength(20)]
         public string semesterOffered { get; set; } // User Input
+
+        
     }
 }

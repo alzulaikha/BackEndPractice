@@ -29,7 +29,7 @@ namespace UniversityManagementSystem.Models
         public int enrollmentYear { get; set; } // User Input
         [Range(0.0, 4.0)]
         public decimal gpa { get; set; } = 0.0m; // Calculated
-        public ICollection<Instructor> Instructors { get; set; } // Navigation property 
+        public ICollection<Enrollment> Enrollment { get; set; } // Navigation property 
 
 
     }
