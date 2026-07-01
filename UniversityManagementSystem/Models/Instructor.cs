@@ -34,6 +34,8 @@ namespace UniversityManagementSystem.Models
         public string academicTitle { get; set; } // User Input
 
 
+        public ICollection<Course> courses { get; set; } // Navigation property 
+
 
 
 
