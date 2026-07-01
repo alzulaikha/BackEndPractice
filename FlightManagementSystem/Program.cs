@@ -180,7 +180,7 @@ namespace FlightManagementSystem
             foreach (Flight f in context.Flights)
             {
                 Console.WriteLine($"Code: {f.flightCode}  |  Origin: {f.origin}  |  Destination: {f.destination}" +
-                                  $"  |  Departure Date: {f.departureTime}  |  Ticket Price: {f.ticketPrice} + | Available Seats: { f.availableSeats}"+
+                                  $"  |  Departure Time : {f.departureTime}  |  Ticket Price: {f.ticketPrice} + | Available Seats: { f.availableSeats}"+
            
                                   $"  |  Status: {f.status} |Flight Duration: {f.flightDuration} ");
 
