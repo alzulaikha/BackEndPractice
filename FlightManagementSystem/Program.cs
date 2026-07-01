@@ -351,7 +351,7 @@ namespace FlightManagementSystem
             Console.WriteLine("Flight Id:"+flightid);
             Console.WriteLine("Passenger Id:" + passId);
             Console.WriteLine("Toatal price: " +selectflight.ticketPrice);
-            Console.WriteLine("Seat number: "+selectflight.availableSeats);
+            Console.WriteLine("Available seats: " + selectflight.availableSeats);
 
 
         }
