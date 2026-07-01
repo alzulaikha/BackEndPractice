@@ -227,6 +227,7 @@ namespace FlightManagementSystem
             if (pilot == null)
             {
                 Console.WriteLine("Pilot not found ");
+                return;
             }
 
             Console.WriteLine("=== flight record ===");
