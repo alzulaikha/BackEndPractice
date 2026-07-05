@@ -482,7 +482,7 @@ namespace FlightManagementSystem
                 {
                     Console.WriteLine($"Flight Code: {f.flightCode}  |   Origin: {f.origin}  |  Destination: {f.destination}" +
                                       $"  |  departure date: {f.departureDate}  | Seat Number: {f.availableSeats}" +
-                                      $"  |  Price: {f.ticketPrice}  |  Status: {f.status} ");
+                                      $"  |  Price: {f.ticketPrice}  |  Status: {f.status} |  {b.totalPrice}");
                 }
 
             }
