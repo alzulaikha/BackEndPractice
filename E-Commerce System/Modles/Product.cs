@@ -1,19 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace E_Commerce_System.Modles
-{
+
     internal class Product
     {
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int productId { get; set; } //System Generated
+
+        [Required]
+        [MaxLength(150)]
         public string productName { get; set; } //User input
-        public string description { get; set; } // User input 
+
+        [MaxLength(1000)]
+        public string? description { get; set; } // User input 
+
+        [Required,]
+        [Range(1,double.MaxValue)]
         public decimal price { get; set; } //User input
-        public int stockQuantity { get; set; }//calculated
-        public string imageUrl { get; set; } // user input
+
+        [Required]
+        [Range(0, int.MaxValue)] //must be greater than or equal to 0
+        public int stockQuantity { get; set; } = 0;//calculated
+
+        [MaxLength(300)]
+        public string? imageUrl { get; set; } // user input
+
+        [Required]
+        [ForeignKey(" Category")]
         public int categoryId { get; set; } //  From List/ forgin key
+        public Category Category { get; set; }
+
+        [Required]
         public DateTime createdAt { get; set; } //calculated
-        public bool isAvailable { get; set; } //Default
+        public bool isAvailable { get; set; } = true; //Default
     }
 }
