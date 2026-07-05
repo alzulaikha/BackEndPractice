@@ -287,7 +287,6 @@ namespace FlightManagementSystem
 
             int passId= int.Parse(Console.ReadLine());
 
-
             Passenger selectpassenger = context.Passengers.FirstOrDefault(p => p.passengerId == passId);
             if (selectpassenger == null)
             {
@@ -442,11 +441,7 @@ namespace FlightManagementSystem
                 Console.WriteLine("flight is already cancelled!  ");
                 return;
             }
-            //if (selectflight.status == "Departed")
-            //{
-            //    Console.WriteLine("Can not cancelled flight!");
-            //    return;
-            //}
+        
 
             selectflight.status = "Cancelled";
            var select=context.Bookings.Where(b=>b.flightId == flightid);
@@ -479,18 +474,19 @@ namespace FlightManagementSystem
                 return;
             }
 
-            foreach (Booking b in context.Bookings.Where(b => b.passengerId == passId)) ;
+            foreach (Booking b in context.Bookings.Where(b => b.passengerId == passId))
 
-            foreach (Flight f in context.Flights)
             {
-                Console.WriteLine($"Flight Code: {f.flightCode}  |   Origin: {f.origin}  |  Destination: {f.destination}" +
-                                  $"  |  departure date: {f.departureDate}  | Seat Number: {f.availableSeats}" +
-                                  $"  |  Price: {f.ticketPrice}  |  Status: {f.status}");
+                Flight flight1 = context.Flights.FirstOrDefault(x => x.flightId == b.flightId);
+                if (flight1 != null)
+                {
+                    Console.WriteLine($"Flight Code: {f.flightCode}  |   Origin: {f.origin}  |  Destination: {f.destination}" +
+                                      $"  |  departure date: {f.departureDate}  | Seat Number: {f.availableSeats}" +
+                                      $"  |  Price: {f.ticketPrice}  |  Status: {f.status} ");
+                }
+
             }
-
-
-        }
-       
+        } 
         static void Main(string[] args)
 
         {
