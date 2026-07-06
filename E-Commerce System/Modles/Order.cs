@@ -36,6 +36,10 @@ namespace E_Commerce_System.Modles
         [Required]
         [MaxLength(50)]
         public string paymentMethod { get; set; } //user input
- 
+
+
+
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
     }
 }
