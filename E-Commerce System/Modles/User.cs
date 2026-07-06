@@ -39,6 +39,7 @@ namespace E_Commerce_System.Modles
         public bool isActive { get; set; } = true; //Default
 
 
-        public List<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; } //navigation — one User places many Orders
+        public List<Review> Reviews { get; set; } 
     }
 }
