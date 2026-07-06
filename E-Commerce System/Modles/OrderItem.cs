@@ -20,9 +20,15 @@ namespace E_Commerce_System.Modles
         public int quantity { get; set; }// user input
 
 
+        // foreign key — every order item belongs to exactly one order
+        [Required]
+        [ForeignKey("Order")]
+        public int orderId { get; set; }// system generated 
+        public Order Order { get; set; }// navigation property
 
 
- 
+
+
 
 
     }
