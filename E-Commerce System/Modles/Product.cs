@@ -43,7 +43,7 @@ namespace E_Commerce_System.Modles
 
 
       public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); // navigation — one Product has many Reviews
-    public List<Review> Reviews { get; set; } = new List<Review>(); //navigation — one Product appears in many OrderItems (bridge table)
+        public List<Review> Reviews { get; set; } = new List<Review>(); //navigation — one Product appears in many OrderItems (bridge table)
 
 }
 }

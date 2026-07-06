@@ -39,6 +39,6 @@ namespace E_Commerce_System.Modles
         public bool isActive { get; set; } = true; //Default
 
 
-
+        public List<Order> Orders { get; set; }
     }
 }
