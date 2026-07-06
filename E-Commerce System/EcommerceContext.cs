@@ -13,6 +13,8 @@ namespace E_Commerce_System
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
 
