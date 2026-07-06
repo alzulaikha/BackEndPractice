@@ -42,6 +42,8 @@ namespace E_Commerce_System.Modles
         public bool isAvailable { get; set; } = true; //Default
 
 
-      public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+      public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); // navigation — one Product has many Reviews
+    public List<Review> Reviews { get; set; } = new List<Review>(); //navigation — one Product appears in many OrderItems (bridge table)
+
 }
 }
