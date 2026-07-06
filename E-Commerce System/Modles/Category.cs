@@ -21,7 +21,10 @@ namespace E_Commerce_System.Modles
         [MaxLength(300)]
         public string? imageUrl { get; set; } //User input  /Optional
 
+
+        public List<Product> Products { get; set; }  // navigation — one Category has many Products
+
     }
 }
 
-[Index(nameof(courseCode), IsUnique = true)]
+
