@@ -40,5 +40,8 @@ namespace E_Commerce_System.Modles
         [Required]
         public DateTime createdAt { get; set; } //calculated
         public bool isAvailable { get; set; } = true; //Default
-    }
+
+
+      public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+}
 }
