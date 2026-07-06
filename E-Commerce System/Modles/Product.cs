@@ -21,8 +21,9 @@ namespace E_Commerce_System.Modles
         public string? description { get; set; } // User input 
 
         [Required,]
-        [Range(1,double.MaxValue)]
-        public decimal price { get; set; } //User input
+        [Column(TypeName = "decimal(10,2)")] 
+        [Range(0.01,double.MaxValue)]
+        public double price { get; set; } //User input
 
         [Required]
         [Range(0, int.MaxValue)] //must be greater than or equal to 0
