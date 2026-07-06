@@ -27,6 +27,12 @@ namespace E_Commerce_System.Modles
         public Order Order { get; set; }// navigation property
 
 
+        // foreign key — every order item references exactly one product
+        [Required]
+        [ForeignKey("Product")]
+        public int productId { get; set; }// from list 
+        public Product Product { get; set; }// navigation property
+
 
 
 
