@@ -1,4 +1,5 @@
 ﻿using E_Commerce_System.Modles;
+using System.Net;
 
 namespace E_Commerce_System
 {
@@ -73,7 +74,7 @@ namespace E_Commerce_System
             {
                 userName = userName,
                 email = email,
-                passwordHash = passwordHash,
+                passwordHash = password,
                 fullName = fullName,
                 phoneNumber = phone,
                 address = address,
@@ -87,10 +88,61 @@ namespace E_Commerce_System
             Console.WriteLine("\nUser registered successfully.");
             Console.WriteLine($"User ID: {newUser.userId}");
         }
+        public static void NewProductCategory() //Add a New Product to a Category function
 
 
-      
-            static void Main(string[] args)
+        {
+
+            Console.WriteLine("\n=== Add New Product to category ===");
+            Console.WriteLine("\n=== Category ===");
+
+            var category = context.Categories.ToList();
+            foreach (Category c in context.Categories)
+            {
+                Console.WriteLine($"  ID: {c.categoryId}  | Category name: {c.categoryName}");
+            }
+            Console.WriteLine("Enter category id: ");
+            int categoryId = int.Parse( Console.ReadLine() );
+            Category category1 = context.Categories.FirstOrDefault(c => c.categoryId ==categoryId);
+        
+
+
+            Console.Write("Enter product name: ");
+            string productName = Console.ReadLine();
+
+            Console.Write("Enter description (optional): ");
+            string description = Console.ReadLine();
+
+            Console.WriteLine("Enter product price (optional): ");
+            double price = double.Parse(Console.ReadLine());
+
+            Console.Write("Enter stock quantity: ");
+            int stockQuantity = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter image Url: ");
+            string imageUrl = Console.ReadLine();
+
+
+            Product product = new Product
+            {
+                productName = productName,
+                description = description,
+                price = price,
+                stockQuantity = stockQuantity,
+                categoryId = categoryId,
+                createdAt = DateTime.Now,
+                isAvailable = true
+            };
+
+            context.Products.Add(product);
+            context.SaveChanges();
+
+
+            Console.WriteLine("=== Product added to category successfully. ===");
+            Console.WriteLine($"User ID: {product.productId}");
+        }
+
+
+        static void Main(string[] args)
         {
             bool exit = false;
 
@@ -120,9 +172,10 @@ namespace E_Commerce_System
                 switch (option)
                 {
                     case 1:
-                        RegisterUser();
+                        RegisterUser();// Register a New User 
                         break;
                     case 2:
+                        NewProductCategory(); //Add a New Product to a Category
                         break; 
                     case 3:
                         break;
