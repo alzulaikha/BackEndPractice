@@ -223,7 +223,20 @@ namespace E_Commerce_System
             context.SaveChanges();
 
         }
+        public static void DeleteReview() //Delete a Review function
+        {
+            Console.WriteLine("Enter review id:");
+            int reviewId = int.Parse(Console.ReadLine());
 
+            var review = context.Reviews.FirstOrDefault(r => reviewId == r.reviewId);
+            if (review == null)
+            {
+                Console.WriteLine("Review not found!");
+
+            }
+            context.Reviews.Remove(review);
+            context.SaveChanges();
+        }
             static void Main(string[] args)
         {
             bool exit = false;
@@ -264,11 +277,13 @@ namespace E_Commerce_System
                     case 4:
                         ProductReview();//Write a Product Review
                         break;
-                    case 5: //Update Product Price and Availability
+                    case 5: ////Update Product Price and Availability
+                        UpdateProductPriceandAvailability();
                         break;
                     case 6:
                         break;
                     case 7:
+                        DeleteReview(); //Delete a Review
                         break;
                     case 8:
                         break;
