@@ -2,7 +2,9 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static EcommerceContext context= new EcommerceContext();
+
+            static void Main(string[] args)
         {
             bool exit = false;
 
