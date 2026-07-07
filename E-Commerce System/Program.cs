@@ -236,7 +236,17 @@ namespace E_Commerce_System
             }
             context.Reviews.Remove(review);
             context.SaveChanges();
-        }
+        } 
+
+        public static void ViewAllProducts()//View All Products function
+            {
+             var product = context.Products.ToList();
+            foreach (Product p in context.Products)
+            {
+                Console.WriteLine($"Product Id: {p.productId}  | Product name: {p.productName} | Product price: {p.price} " +
+                    $"| categoryName Stock: {p.Category.categoryName} Quantity: {p.stockQuantity} | availability status: {p.isAvailable}");
+            }
+}              
             static void Main(string[] args)
         {
             bool exit = false;
@@ -286,6 +296,7 @@ namespace E_Commerce_System
                         DeleteReview(); //Delete a Review
                         break;
                     case 8:
+                        ViewAllProducts();//view all product
                         break;
                     case 9:
                         break;
@@ -307,4 +318,4 @@ namespace E_Commerce_System
             }
         }// closed while
     }
-}
+} 
