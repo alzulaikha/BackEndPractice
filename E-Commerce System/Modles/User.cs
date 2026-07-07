@@ -9,7 +9,7 @@ namespace E_Commerce_System.Modles
     [Index(nameof(userName), IsUnique = true)]
     [Index(nameof(email), IsUnique = true)]
 
-    internal class User
+    public class User
     {
         [Key]
         [Required]

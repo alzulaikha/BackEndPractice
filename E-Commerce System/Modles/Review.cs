@@ -6,7 +6,7 @@ using System.Text;
 
 namespace E_Commerce_System.Modles
 {
-    internal class Review
+    public class Review
     {
         [Required]
         [Key]

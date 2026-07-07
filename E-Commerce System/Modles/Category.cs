@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
 namespace E_Commerce_System.Modles
 {
     [Index(nameof(categoryName), IsUnique = true)]
-    internal class Category
+    public class Category
     {
         [Key]
         [Required]

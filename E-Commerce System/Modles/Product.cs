@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace E_Commerce_System.Modles
+namespace E_Commerce_System.Modles { 
 
-    internal class Product
+    public class Product
     {
         [Key]
         [Required]

@@ -24,5 +24,6 @@ namespace E_Commerce_System
         {
             options.UseSqlServer(
             "Server=localhost;Database=ECommerceDB;Trusted_Connection=True;TrustServerCertificate=True; ");
+        }
     }
 }
