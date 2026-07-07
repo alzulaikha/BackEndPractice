@@ -1,9 +1,56 @@
-﻿namespace E_Commerce_System
+﻿using E_Commerce_System.Modles;
+
+namespace E_Commerce_System
 {
     internal class Program
     {
         public static EcommerceContext context= new EcommerceContext();
+        public static void RegisterUser()// Register a New User function
+        {
+            Console.WriteLine("\n=== Register New User ===");
 
+            Console.Write("Enter username: ");
+            string userName = Console.ReadLine();
+            
+
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter password: ");
+            string passwordHash = Console.ReadLine();
+
+            Console.Write("Enter full name: ");
+            string fullName = Console.ReadLine();
+
+            Console.Write("Enter phone number : ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter address : ");
+            string address = Console.ReadLine();
+
+
+
+            User newUser = new User
+            {
+                userName = userName,
+                email = email,
+                passwordHash = passwordHash,
+                fullName = fullName,
+                phoneNumber = phone,
+                address = address,
+                registrationDate = DateTime.Now,
+                isActive = true
+            };
+
+            context.Users.Add(newUser);
+            context.SaveChanges();
+
+            Console.WriteLine("\nUser registered successfully.");
+            Console.WriteLine($"User ID: {newUser.userId}");
+        }
+
+
+      
             static void Main(string[] args)
         {
             bool exit = false;
