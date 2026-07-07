@@ -11,7 +11,7 @@ namespace E_Commerce_System
 
             Console.Write("Enter username: ");
             string userName = Console.ReadLine();
-            if (string.IsNullOrEmpty(userName))//validation if empty or not
+            if (string.IsNullOrEmpty(userName))//validation user name if empty or not
             {
                 Console.WriteLine("Name cannot be empty!");
                 return;
@@ -33,6 +33,12 @@ namespace E_Commerce_System
 
             Console.Write("Enter full name: ");
             string fullName = Console.ReadLine();
+            if (string.IsNullOrEmpty(fullName))//validation full name shoudl not be empty
+            {
+                Console.WriteLine("Full name cannot be empty!");
+                return;
+            }
+
 
             Console.Write("Enter phone number : ");
             string phone = Console.ReadLine();
