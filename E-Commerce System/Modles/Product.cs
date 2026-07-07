@@ -30,7 +30,7 @@ namespace E_Commerce_System.Modles {
         public int stockQuantity { get; set; } = 0;//calculated
 
         [MaxLength(300)]
-        public string? imageUrl { get; set; } // user input
+        public string? imageUrl { get; set; } // user input,  Optional
 
         [Required]
         [ForeignKey(" Category")]

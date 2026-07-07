@@ -141,8 +141,72 @@ namespace E_Commerce_System
             Console.WriteLine($"User ID: {product.productId}");
         }
 
+        //public static void PlaceOrder() //Place an Order function
+        //{
+        //    Console.WriteLine("=== Place New Order ===");
 
-        static void Main(string[] args)
+
+        //    Console.Write("Enter user ID: ");
+        //    int userId = int.Parse(Console.ReadLine());
+        //    User user = context.Users.FirstOrDefault(u => u.userId == userId);
+
+        //    Console.Write("Enter shipping address: ");
+        //    string shippingAddress = Console.ReadLine();
+        //    Console.Write("Choose payment method: 1-CreditCard  2-DebitCard  3-PayPal  4-Cash");
+        //    int paymentMethod1 = int.Parse(Console.ReadLine());
+        //    string[] payMethods = { "CreditCard", "DebitCard", "PayPal", "Cash" };
+        //    string paymentMethod = payMethods[paymentMethod1 - 1];
+        //}
+
+        public static void ProductReview() //Write a Product Review function
+        {
+            Console.WriteLine("\n===Write a Product Review ===");
+            Console.WriteLine("===  available users:  ===");
+            foreach (User user in context.Users)
+            {
+                Console.WriteLine($" User ID: {user.userId}  | User Name: {user.userName}");
+
+            }
+            Console.Write("Enter user ID: ");
+            int userId = int.Parse(Console.ReadLine());
+            User user1 = context.Users.FirstOrDefault(u => u.userId == userId);
+
+            Console.WriteLine("===  available  products:  ===");
+            foreach (Product product in context.Products)
+            {
+                Console.WriteLine($" Product ID: {product.productId}  |  Product Name: {product.productName}");
+
+            }
+            Console.WriteLine("=== Enter product id:  ===");
+            int productId = int.Parse(Console.ReadLine());
+            Product product1 = context.Products.FirstOrDefault(p => p.productId == productId);
+
+            Console.WriteLine("Enter rating: (1–5)");
+            int rating = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter comment: ");
+            string comment = Console.ReadLine();
+
+
+
+            Review review = new Review
+            {
+                userId = userId,
+                productId = productId,
+                rating = rating,
+                comment = comment,
+                reviewDate = DateTime.Now,
+
+            };
+
+            context.Reviews.Add(review);
+            context.SaveChanges();
+
+
+            Console.WriteLine("=== Review Write successfully. ===");
+            Console.WriteLine($" Review ID: {review.reviewId}");
+        }
+
+            static void Main(string[] args)
         {
             bool exit = false;
 
@@ -180,6 +244,7 @@ namespace E_Commerce_System
                     case 3:
                         break;
                     case 4:
+                        ProductReview();//Write a Product Review
                         break;
                     case 5:
                         break;
