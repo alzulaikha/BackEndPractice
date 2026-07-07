@@ -11,7 +11,11 @@ namespace E_Commerce_System
 
             Console.Write("Enter username: ");
             string userName = Console.ReadLine();
-            
+            if (string.IsNullOrEmpty(userName))
+            {
+                Console.WriteLine("Name cannot be empty!");
+                return;
+            }
 
             Console.Write("Enter email: ");
             string email = Console.ReadLine();
@@ -81,6 +85,7 @@ namespace E_Commerce_System
                 switch (option)
                 {
                     case 1:
+                        RegisterUser();
                         break;
                     case 2:
                         break; 
