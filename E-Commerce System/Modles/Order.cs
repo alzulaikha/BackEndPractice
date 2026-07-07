@@ -22,12 +22,13 @@ namespace E_Commerce_System.Modles
         public DateTime orderDate { get; set; } //calculated
 
         [Required]
-        [Range(0,decimal.MaxValue)]
+        [Column(TypeName = "decimal(10,2)")]
+        [Range(0, double.MaxValue)]
         public decimal totalAmount { get; set; } //calculated
 
         [Required]
         [MaxLength(30)]
-        public bool status { get; set; } = "Pending";//Default
+        public string status { get; set; } = "Pending";//Default
 
         [Required]
         [MaxLength (300)]
