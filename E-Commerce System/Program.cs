@@ -205,6 +205,24 @@ namespace E_Commerce_System
             Console.WriteLine("=== Review Write successfully. ===");
             Console.WriteLine($" Review ID: {review.reviewId}");
         }
+        public static void UpdateProductPriceandAvailability() //Update Product Price and Availability function
+        {
+            Console.WriteLine("Enter Product id: ");
+            int productId=int.Parse(Console.ReadLine());
+            var product1 = context.Products.FirstOrDefault(p=>p.productId == productId);
+
+           Console.WriteLine("Enter new price");
+           double price = double.Parse(Console.ReadLine());
+            
+            Product product2 = new Product
+            {
+                price=price,
+                isAvailable = false
+            };
+            context.Products.Add(product2);
+            context.SaveChanges();
+
+        }
 
             static void Main(string[] args)
         {
@@ -246,7 +264,7 @@ namespace E_Commerce_System
                     case 4:
                         ProductReview();//Write a Product Review
                         break;
-                    case 5:
+                    case 5: //Update Product Price and Availability
                         break;
                     case 6:
                         break;
