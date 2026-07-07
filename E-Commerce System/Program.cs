@@ -32,6 +32,14 @@ namespace E_Commerce_System
                 Console.WriteLine("Email cannot be empty!");
                 return;
             }
+            bool exit2 = context.Users.Any(u => u.email == email);//validation user email shoudl be unique
+            if (exit2)
+            {
+                Console.WriteLine("User email already exit, please enter another email");
+                return;
+
+            }
+
 
             Console.Write("Enter password: ");
             string password= Console.ReadLine();
