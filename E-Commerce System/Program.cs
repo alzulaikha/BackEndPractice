@@ -247,6 +247,42 @@ namespace E_Commerce_System
                     $"| categoryName Stock: {p.Category.categoryName} Quantity: {p.stockQuantity} | availability status: {p.isAvailable}");
             }
 }              
+
+        public static void FilterProductsByCategoryPrice() // Filter Products by Category and Price Range function
+
+
+        {
+            Console.WriteLine("\n=== Filter Products By Category Price ===");
+            Console.WriteLine();
+            Console.WriteLine("=== Categories ====");
+
+            foreach(Category c in context.Categories)
+            {
+                Console.WriteLine($" Category ID: {c.categoryId}  | Category Name  {c.categoryName}");
+            }
+
+            Console.WriteLine("Enter category id: ");
+            int categoryid = int.Parse(Console.ReadLine());
+            Category category = context.Categories.FirstOrDefault(c => c.categoryId == categoryid);
+
+            Console.WriteLine("Enter  minimum price: ");
+            double minPrice = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter maximum price: ");
+            double maxPrice = double.Parse(Console.ReadLine());
+
+            var product = context.Products.Where(p=>categoryid== categoryid&&
+                                           p.price >= minPrice&&
+                                           p.price <= maxPrice)
+                                           .OrderBy(p => p.price)
+                                           .ToList();
+
+            foreach(Product p in context.Products)
+            {
+                Console.WriteLine($" Product ID: {p.productId}  | Product Name: {p.productName} | Product Price: {p.price} " +
+                    $"| stock Quantity : {p.stockQuantity}");
+            }
+
+        }
             static void Main(string[] args)
         {
             bool exit = false;
@@ -299,6 +335,7 @@ namespace E_Commerce_System
                         ViewAllProducts();//view all product
                         break;
                     case 9:
+                        FilterProductsByCategoryPrice(); // Filter Products by Category and Price Range
                         break;
                     case 10:
                         break; 
