@@ -11,7 +11,7 @@ namespace E_Commerce_System
 
             Console.Write("Enter username: ");
             string userName = Console.ReadLine();
-            if (string.IsNullOrEmpty(userName))
+            if (string.IsNullOrEmpty(userName))//validation if empty or not
             {
                 Console.WriteLine("Name cannot be empty!");
                 return;
@@ -21,7 +21,15 @@ namespace E_Commerce_System
             string email = Console.ReadLine();
 
             Console.Write("Enter password: ");
-            string passwordHash = Console.ReadLine();
+            string password= Console.ReadLine();
+            bool result = context.Users.Any(u => u.passwordHash == password);//validation if password is already exit
+
+            if (result)
+            {
+                Console.WriteLine("Password already exit, please enter another password ");
+                return;
+
+            }
 
             Console.Write("Enter full name: ");
             string fullName = Console.ReadLine();
