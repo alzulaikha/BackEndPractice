@@ -418,7 +418,6 @@ namespace E_Commerce_System
             { Console.WriteLine("Category not found!");return; }
 
             
-
             Console.WriteLine("Enter  minimum price: ");
             double minPrice = double.Parse(Console.ReadLine());
 
@@ -441,8 +440,29 @@ namespace E_Commerce_System
             }
 
         }
-         
-        //public static void Get Category with All Its Products
+
+        public static void CatgoryWithAllProducts() //Get Category with All Its Products function
+        {
+            Console.WriteLine("=== Category with All Its Products ===");
+            Console.WriteLine("Enter Order id:");
+            int orderid = int.Parse(Console.ReadLine());
+            var category = context.Categories.Include(c => c.Products)
+                                             .FirstOrDefault(c => c.categoryId == orderid);
+            if (category == null)
+            {
+                Console.WriteLine("Category not found! ");return;
+            }
+
+            Console.WriteLine($" category Name : {category.categoryName}  | Description: {category.description}");
+            foreach (var p in category.Products)
+            {
+
+                Console.WriteLine($"Product Id: {p.productId} | Product Name {p.productName}  |Unit Price  {p.price} |Stock Quantity: {p.stockQuantity}");
+            }
+        }                     
+
+           
+        
 
         public static void ViewOrderHistory() //View Order History with Full Details function
 
@@ -474,8 +494,7 @@ namespace E_Commerce_System
                 }
             }
 
-            //decimal grandTotal = user.Orders.Sum(o => o.totalAmount);
-            //Console.WriteLine($"\n  TOTAL SPENT: {grandTotal:C}");
+      
         }
         static void Main(string[] args)
         {
@@ -533,7 +552,8 @@ namespace E_Commerce_System
                     case 9:
                         FilterProductsByCategoryPrice(); // Filter Products by Category and Price Range
                         break;
-                    case 10:
+                    case 10: //Get Category with All Its Products
+                        CatgoryWithAllProducts();
                         break; 
                     case 11:
                         ViewAllProducts(); //View Order History with Full Details 
