@@ -410,12 +410,20 @@ namespace E_Commerce_System
             Console.WriteLine("Enter category id: ");
             int categoryid = int.Parse(Console.ReadLine());
             Category category = context.Categories.FirstOrDefault(c => c.categoryId == categoryid);
+            if (category == null) 
+            { Console.WriteLine("Category not found!");return; }
+
+            
 
             Console.WriteLine("Enter  minimum price: ");
             double minPrice = double.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter maximum price: ");
             double maxPrice = double.Parse(Console.ReadLine());
-
+            if (minPrice > maxPrice)
+            {
+                Console.WriteLine(" minimum price cannot be greater than maximum price");return;
+            }
             var product = context.Products.Where(p=>categoryid== categoryid&&
                                            p.price >= minPrice&&
                                            p.price <= maxPrice)
