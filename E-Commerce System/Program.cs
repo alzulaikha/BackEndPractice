@@ -264,6 +264,10 @@ namespace E_Commerce_System
             Console.Write("Enter user ID: ");
             int userId = int.Parse(Console.ReadLine());
             User user1 = context.Users.FirstOrDefault(u => u.userId == userId);
+            if (user1 == null)
+            {
+                Console.WriteLine("User not found!");
+            }
 
 
             Console.WriteLine("===  available  products:  ===");
@@ -275,14 +279,21 @@ namespace E_Commerce_System
             Console.WriteLine("=== Enter product id:  ===");
             int productId = int.Parse(Console.ReadLine());
             Product product1 = context.Products.FirstOrDefault(p => p.productId == productId);
+            if (product1 == null)
+            {
+                Console.WriteLine("Product not found!");
+            }
+
 
             Console.WriteLine("Enter rating: (1–5)");
             int rating = int.Parse(Console.ReadLine());
-            if( rating < 0 && rating>0) { //Rating validation
-                {
+            if (rating < 0 && rating > 0) //Rating validation
+
+            {
                     Console.WriteLine("Rating must be between 1-5");
                     return;
-                }
+             }
+
             Console.WriteLine("Enter comment: ");
             string comment = Console.ReadLine();
 
