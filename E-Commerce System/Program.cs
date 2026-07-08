@@ -1,5 +1,8 @@
 ﻿using E_Commerce_System.Modles;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace E_Commerce_System
 {
@@ -369,7 +372,41 @@ namespace E_Commerce_System
             }
 
         }
-            static void Main(string[] args)
+
+        public static void ViewOrderHistory() //View Order History with Full Details function
+
+        {
+            Console.WriteLine("\n=== Order History ===");
+
+            Console.WriteLine("=== Users: ===");
+            foreach (User u in context.Users)
+                Console.WriteLine($" User ID: {u.userId}  | User Name: {u.userName}");
+
+            Console.Write("Enter user ID: ");
+            int userId = int.Parse(Console.ReadLine());
+
+
+            var user1 = context.Users.Include(u => u.Orders)
+                .ThenInclude(o => o.OrderItems)
+                .ThenInclude(i => i.Product)
+                .FirstOrDefault(u => u.userId == userId);
+
+
+            foreach (Order o in user1.Orders)
+            {
+                Console.WriteLine($" Order ID: {o.orderId}  |  Order Date: {o.orderDate}" +
+                                  $"  |  Status: {o.status}  |  Total Amount: {o.totalAmount}");
+             foreach (OrderItem item in o.OrderItems)
+                {
+          
+                    Console.WriteLine($" Product Name {item.Product.productName}  |Unit Price  {item.unitPrice}");
+                }
+            }
+
+            //decimal grandTotal = user.Orders.Sum(o => o.totalAmount);
+            //Console.WriteLine($"\n  TOTAL SPENT: {grandTotal:C}");
+        }
+        static void Main(string[] args)
         {
             bool exit = false;
 
@@ -428,12 +465,15 @@ namespace E_Commerce_System
                     case 10:
                         break; 
                     case 11:
+                        ViewAllProducts(); //View Order History with Full Details 
                         break;
                     case 12:
                         break; 
                     case 0:
+                        exit = true;
                         break;
                     default:
+                        Console.WriteLine("Invalid option. Please try again");
                         break;
 
                 }// closed switch
