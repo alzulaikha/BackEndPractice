@@ -321,10 +321,17 @@ namespace E_Commerce_System
             Console.WriteLine("Enter Product id: ");
             int productId=int.Parse(Console.ReadLine());
             var product1 = context.Products.FirstOrDefault(p=>p.productId == productId);
-
+            if (product1 == null)
+            {
+                Console.WriteLine("Product not found");
+            }
            Console.WriteLine("Enter new price");
            double price = double.Parse(Console.ReadLine());
-            
+            if (price < 0 )
+            { 
+                Console.WriteLine("Invalid price!");
+            }
+
             Product product2 = new Product
             {
                 price=price,
