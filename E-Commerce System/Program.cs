@@ -172,14 +172,26 @@ namespace E_Commerce_System
             Console.Write("Enter user ID: ");
             int userId = int.Parse(Console.ReadLine());
             User user = context.Users.FirstOrDefault(u => u.userId == userId);
+            if (user == null) 
+            {
+                Console.WriteLine("User not found!");
+            }
 
             Console.Write("Enter shipping address: ");
             string shippingAddress = Console.ReadLine();
-
+            if (string.IsNullOrEmpty(shippingAddress))//validation email shoudl not be empty
+            {
+                Console.WriteLine("Shipping address cannot be empty!");
+                return;
+            }
             string[] paymentMethods = { "CreditCard", "DebitCard", "PayPal", "Cash" };
 
             Console.Write("Choose payment method (1-4): ");
             int choice = int.Parse(Console.ReadLine());
+            if (paymentMethods == null)
+            {
+                Console.WriteLine("paymentMethods cannot be empty!");
+            }
             Console.WriteLine("Payment Method: " + paymentMethods[choice - 1]);//convert the user choice (1-4) to the correct array index(0-3)
 
 
@@ -211,7 +223,11 @@ namespace E_Commerce_System
 
                 Console.Write("Enter Quantity: ");
                 int qty = int.Parse(Console.ReadLine());
-
+                if(qty <= 0)
+                {
+                   Console.WriteLine("Invaid quantity");
+                    break;
+                }
                 OrderItem item = new OrderItem
                 {
                     orderId = order.orderId,
