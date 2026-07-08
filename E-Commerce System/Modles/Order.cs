@@ -24,7 +24,7 @@ namespace E_Commerce_System.Modles
         [Required]
         [Column(TypeName = "decimal(10,2)")]
         [Range(0, double.MaxValue)]
-        public decimal totalAmount { get; set; } //calculated
+        public double totalAmount { get; set; } //calculated
 
         [Required]
         [MaxLength(30)]

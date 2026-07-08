@@ -121,9 +121,11 @@ namespace E_Commerce_System
             Console.WriteLine("Enter image Url: ");
             string imageUrl = Console.ReadLine();
 
+    
 
             Product product = new Product
             {
+               
                 productName = productName,
                 description = description,
                 price = price,
@@ -141,22 +143,78 @@ namespace E_Commerce_System
             Console.WriteLine($"User ID: {product.productId}");
         }
 
-        //public static void PlaceOrder() //Place an Order function
-        //{
-        //    Console.WriteLine("=== Place New Order ===");
+        public static void PlaceOrder() //Place an Order function
+        {
+
+            Console.WriteLine("=== Place New Order ===");
 
 
-        //    Console.Write("Enter user ID: ");
-        //    int userId = int.Parse(Console.ReadLine());
-        //    User user = context.Users.FirstOrDefault(u => u.userId == userId);
+            Console.Write("Enter user ID: ");
+            int userId = int.Parse(Console.ReadLine());
+            User user = context.Users.FirstOrDefault(u => u.userId == userId);
 
-        //    Console.Write("Enter shipping address: ");
-        //    string shippingAddress = Console.ReadLine();
-        //    Console.Write("Choose payment method: 1-CreditCard  2-DebitCard  3-PayPal  4-Cash");
-        //    int paymentMethod1 = int.Parse(Console.ReadLine());
-        //    string[] payMethods = { "CreditCard", "DebitCard", "PayPal", "Cash" };
-        //    string paymentMethod = payMethods[paymentMethod1 - 1];
-        //}
+            Console.Write("Enter shipping address: ");
+            string shippingAddress = Console.ReadLine();
+
+            string[] paymentMethods = { "CreditCard", "DebitCard", "PayPal", "Cash" };
+
+            Console.Write("Choose payment method (1-4): ");
+            int choice = int.Parse(Console.ReadLine());
+            Console.WriteLine("Payment Method: " + paymentMethods[choice - 1]);//convert the user choice (1-4) to the correct array index(0-3)
+
+
+            Order order = new Order
+            {
+                
+                userId = userId,
+                User = user,         // set navigation property
+                orderDate = DateTime.Now,
+                totalAmount = 0,
+                status = "Pending",
+                shippingAddress = shippingAddress,
+                paymentMethod = paymentMethods[choice - 1]
+            };
+            context.Orders.Add(order);
+            user.Orders.Add(order);
+
+
+            // Add products to the order
+            while (true)
+            {
+                Console.Write("Enter Product ID (0 to finish): ");
+                int productId = int.Parse(Console.ReadLine());
+
+                if (productId == 0)
+                    break;
+
+                Product product = context.Products.FirstOrDefault(p => p.productId == productId);
+
+                Console.Write("Enter Quantity: ");
+                int qty = int.Parse(Console.ReadLine());
+
+                OrderItem item = new OrderItem
+                {
+                    orderId = order.orderId,
+                    Order=order,
+                    productId = product.productId,
+                    Product =product,
+                    quantity = qty,
+                    unitPrice = product.price
+                };
+
+                context.OrderItems.Add(item);
+                order.OrderItems.Add(item);     // reverse navigation on Order
+                product.OrderItems.Add(item);   // reverse navigation on Product
+
+                // update stock and running total
+                product.stockQuantity -= qty;
+                order.totalAmount += qty * product.price;
+
+            }
+
+            context.SaveChanges();
+
+        }
 
         public static void ProductReview() //Write a Product Review function
         {
@@ -319,7 +377,9 @@ namespace E_Commerce_System
                         NewProductCategory(); //Add a New Product to a Category
                         break; 
                     case 3:
-                        break;
+                        PlaceOrder(); //Place an Order function
+                        
+                            break;
                     case 4:
                         ProductReview();//Write a Product Review
                         break;

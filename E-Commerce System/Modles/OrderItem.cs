@@ -38,7 +38,7 @@ namespace E_Commerce_System.Modles
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
-        public decimal unitPrice { get; set; }  // calculated — copied from product.price at the time of ordering
+        public double unitPrice { get; set; }  // calculated — copied from product.price at the time of ordering
 
     }
 }
