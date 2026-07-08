@@ -133,6 +133,11 @@ namespace E_Commerce_System
             }
             Console.Write("Enter stock quantity: ");
             int stockQuantity = int.Parse(Console.ReadLine());
+            if (stockQuantity < 0) //validation stockQuantit must be greater than 0
+            {
+                Console.WriteLine("Invalid stockQuantit! ");
+                return;
+            }
             Console.WriteLine("Enter image Url: ");
             string imageUrl = Console.ReadLine();
 
