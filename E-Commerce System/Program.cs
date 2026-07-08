@@ -115,6 +115,11 @@ namespace E_Commerce_System
 
             Console.Write("Enter product name: ");
             string productName = Console.ReadLine();
+            if (string.IsNullOrEmpty(productName))//validation product name shoudl not be empty
+            {
+                Console.WriteLine("Product name cannot be empty!");
+                return;
+            }
 
             Console.Write("Enter description (optional): ");
             string description = Console.ReadLine();
