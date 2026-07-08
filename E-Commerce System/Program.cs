@@ -365,7 +365,7 @@ namespace E_Commerce_System
             order.status = "Cancelled";
 
             context.SaveChanges();
-            Console.WriteLine("Oder cancelled succassfuly. ");
+            Console.WriteLine("Order cancelled succassfuly. ");
 
         }
             
@@ -373,9 +373,9 @@ namespace E_Commerce_System
         {
             Console.WriteLine("Enter review id:");
             int reviewId = int.Parse(Console.ReadLine());
-
+          
             var review = context.Reviews.FirstOrDefault(r => reviewId == r.reviewId);
-            if (review == null)
+            if (review == null)//validation review not null
             {
                 Console.WriteLine("Review not found!");
 
