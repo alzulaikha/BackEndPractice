@@ -107,7 +107,10 @@ namespace E_Commerce_System
             Console.WriteLine("Enter category id: ");
             int categoryId = int.Parse( Console.ReadLine() );
             Category category1 = context.Categories.FirstOrDefault(c => c.categoryId ==categoryId);
-        
+            if (category == null)
+            {
+               Console.WriteLine("Category not found!");
+            }
 
 
             Console.Write("Enter product name: ");
@@ -372,6 +375,8 @@ namespace E_Commerce_System
             }
 
         }
+         
+        //public static void Get Category with All Its Products
 
         public static void ViewOrderHistory() //View Order History with Full Details function
 
