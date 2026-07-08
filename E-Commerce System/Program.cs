@@ -386,6 +386,10 @@ namespace E_Commerce_System
 
         public static void ViewAllProducts()//View All Products function
             {
+            if (context.Products != null)
+            { Console.WriteLine("No product found!");
+                return; 
+            }
              var product = context.Products.ToList();
             foreach (Product p in context.Products)
             {
