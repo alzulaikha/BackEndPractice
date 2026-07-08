@@ -265,6 +265,7 @@ namespace E_Commerce_System
             int userId = int.Parse(Console.ReadLine());
             User user1 = context.Users.FirstOrDefault(u => u.userId == userId);
 
+
             Console.WriteLine("===  available  products:  ===");
             foreach (Product product in context.Products)
             {
@@ -277,6 +278,11 @@ namespace E_Commerce_System
 
             Console.WriteLine("Enter rating: (1–5)");
             int rating = int.Parse(Console.ReadLine());
+            if( rating < 0 && rating>0) { //Rating validation
+                {
+                    Console.WriteLine("Rating must be between 1-5");
+                    return;
+                }
             Console.WriteLine("Enter comment: ");
             string comment = Console.ReadLine();
 
