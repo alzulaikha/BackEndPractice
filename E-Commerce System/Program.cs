@@ -126,7 +126,11 @@ namespace E_Commerce_System
 
             Console.WriteLine("Enter product price (optional): ");
             double price = double.Parse(Console.ReadLine());
-
+            if (price <= 0) //validation price must be greater than 0
+            {
+                Console.WriteLine("Invalid price! ");
+                return;
+            }
             Console.Write("Enter stock quantity: ");
             int stockQuantity = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter image Url: ");
