@@ -281,6 +281,34 @@ namespace E_Commerce_System
             context.SaveChanges();
 
         }
+
+        public static void CancelOrder() //Cancel an Order function
+        {
+            Console.WriteLine("Enter order id: ");
+            int orderId = int.Parse(Console.ReadLine());
+            var order = context.Orders.FirstOrDefault(or=>or.orderId == orderId);
+            if (order == null) { 
+            
+            Console.WriteLine("Order not found ! ");
+            return;
+            }
+
+            foreach (OrderItem item in context.OrderItems.Where(o => o.orderId == orderId))
+            {
+                Product product = context.Products.FirstOrDefault(p => p.productId == item.productId);
+
+                if (product != null)
+                {
+                    product.stockQuantity += item.quantity;
+                }
+            }
+            order.status = "Cancelled";
+
+            context.SaveChanges();
+            Console.WriteLine("Oder cancelled succassfuly. ");
+
+        }
+            
         public static void DeleteReview() //Delete a Review function
         {
             Console.WriteLine("Enter review id:");
@@ -378,15 +406,15 @@ namespace E_Commerce_System
                         break; 
                     case 3:
                         PlaceOrder(); //Place an Order function
-                        
-                            break;
+                        break;
                     case 4:
                         ProductReview();//Write a Product Review
                         break;
-                    case 5: ////Update Product Price and Availability
-                        UpdateProductPriceandAvailability();
+                    case 5: 
+                        UpdateProductPriceandAvailability(); //Update Product Price and Availability
                         break;
                     case 6:
+                        CancelOrder(); //Cancel an Order
                         break;
                     case 7:
                         DeleteReview(); //Delete a Review
