@@ -99,7 +99,7 @@ namespace E_Commerce_System
             var category = context.Categories.ToList();
             foreach (Category c in context.Categories)
             {
-                Console.WriteLine($"  ID: {c.categoryId}  | Category name: {c.categoryName}");
+                Console.WriteLine($"  ID: {c.categoryId}  | Category name: {c.categoryName} | Description: {c.description}");
             }
             Console.WriteLine("Enter category id: ");
             int categoryId = int.Parse( Console.ReadLine() );
